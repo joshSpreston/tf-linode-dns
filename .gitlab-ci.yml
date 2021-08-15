@@ -36,10 +36,6 @@ terraform_plan:
   script: 
     - terraform plan --out plan
 
-  only:
-    refs:
-      - main
-
   artifacts:
     paths:
       - plan
@@ -49,6 +45,9 @@ terraform_apply:
   stage: iac_apply
   script:
     - terraform apply --auto-approve plan
+
+  dependencies:
+    - terraform_plan
 
   when: manual
   allow_failure: false
