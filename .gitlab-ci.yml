@@ -1,3 +1,10 @@
+stages:
+  - iac_validate
+  - iac_plan
+  - iac_apply
+
+
+
 default:
   image:
     name: hashicorp/terraform:latest
@@ -5,15 +12,15 @@ default:
       - /usr/bin/env
       - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-   before_script:
-     - terraform init
+  before_script:
+    - terraform init
 
-   cache:
-     key: terraform
-     paths:
-       - .terraform
+  cache:
+    key: terraform
+    paths:
+      - .terraform
 
-
+  
 terraform_validate:
   stage: iac_validate
   script:
