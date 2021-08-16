@@ -24,7 +24,7 @@ default:
 terraform_validate:
   stage: iac_validate
   script:
-    - terraform validate -var-file=domain-joshpreston_net.tfvars
+    - terraform validate
 
   except:
     refs:
