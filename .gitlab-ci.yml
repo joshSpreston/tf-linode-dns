@@ -35,8 +35,6 @@ terraform_plan:
   stage: iac_plan
   script: 
     - terraform plan --out plan
-#    - terraform plan -var-file=domain-joshpreston_net.tfvars --out plan
-
 
   artifacts:
     paths:
