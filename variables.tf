@@ -1,6 +1,4 @@
-variable "linode_api_token" {
-  default = "$LINODE_API_TOKEN"
-}
+variable "linode_api_token" {}
 
 
 variable "joshpreston_net_linode_ips" {
