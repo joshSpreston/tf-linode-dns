@@ -1,57 +1,69 @@
+
+
 stages:
-  - iac_validate
-  - iac_plan
-  - iac_apply
+  - initialize
+  - validate
+  - plan
+  - apply
 
 
+variables:
+  TF_ROOT: ${CI_PROJECT_DIR}
+  TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_PROJECT_NAME}
+  TF_PLAN: plan.cache
+  TF_REPORT: plan.json
+  TF_DEPLOY_BRANCH: main
 
-default:
-  image:
-    name: hashicorp/terraform:latest
-    entrypoint:
-      - /usr/bin/env
-      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+image:
+  name: hashicorp/terraform:latest
+  entrypoint:
+    - /usr/bin/env
+    - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-  before_script:
-    - terraform init
+before_script:
+  - apk --no-cache add jq
+  - cd ${TF_ROOT}
 
-  cache:
-    key: terraform
-    paths:
-      - .terraform
+cache:
+  key: terraform
+  paths:
+    - ${TF_ROOT}/.terraform
 
-  
-terraform_validate:
-  stage: iac_validate
+init:
+  stage: initialize
   script:
+    - terraform init -force-copy
+  
+validate:
+  stage: validate
+  script:
+    - terraform init
     - terraform validate
 
-  except:
-    refs:
-      - main
-
-
-terraform_plan:
-  stage: iac_plan
+plan:
+  stage: plan
   script: 
-    - terraform plan --out plan
+    - terraform plan --out ${TF_PLAN}
+    - terraform show --json ${PLAN} | jq -r '([.resource_changes[]?.change.actions?]|flatten)|{"create":(map(select(.=="create"))|length),"update":(map(select(.=="update"))|length),"delete":(map(select(.=="delete"))|length)}' > ${TF_REPORT}
 
   artifacts:
+    name: plan
     paths:
-      - plan
+      - ${TF_ROOT}/${TF_PLAN}
+    reports:
+      terraform: ${TF_ROOT}/${TF_REPORT}
 
-
-terraform_apply:
-  stage: iac_apply
+apply:
+  stage: apply
   script:
-    - terraform apply --auto-approve plan
+    - terraform apply --auto-approve ${TF_PLAN}
 
   dependencies:
-    - terraform_plan
+    - plan
 
   when: manual
   allow_failure: false
 
   only:
     refs:
-      - main
+      - ${TF_DEPLOY_BRANCH}
