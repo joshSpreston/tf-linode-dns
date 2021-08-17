@@ -31,7 +31,7 @@ cache:
 init:
   stage: initialize
   script:
-    - terraform init
+    - terraform init -reconfigure
   
 validate:
   stage: validate
