@@ -21,6 +21,7 @@ image:
     - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 before_script:
+  - apk --no-cache add jq
   - cd ${TF_ROOT}
 
 cache:
@@ -43,7 +44,7 @@ plan:
   stage: plan
   script: 
     - terraform plan --out ${TF_PLAN}
-    - terraform plan-json --out ${TF_REPORT}
+    - terraform show --json ${PLAN} | jq -r '([.resource_changes[]?.change.actions?]|flatten)|{"create":(map(select(.=="create"))|length),"update":(map(select(.=="update"))|length),"delete":(map(select(.=="delete"))|length)}' > ${TF_REPORT}
 
   artifacts:
     name: plan
