@@ -4,10 +4,23 @@ terraform {
     linode = {
       source = "linode/linode"
       version = "1.16.0"
+
+    # I would like to leverage these providers as well:
+    #   - gitlab: to create the various gitlab pats.  probably a whole nother workspace and plan 
+
     }
   }
 
-  backend "http" {}
+  backend "http" {
+    address        = "https://git.joshpreston.net/api/v4/projects/112/terraform/state/terraform-linode"
+    lock_address   = "https://git.joshpreston.net/api/v4/projects/112/terraform/state/terraform-linode/lock"
+    unlock_address = "https://git.joshpreston.net/api/v4/projects/112/terraform/state/terraform-linode/lock"
+    username       = var.TF_STATE_GITLAB_USER
+    password       = var.TF_STATE_GITLAB_TOKEN
+    lock_method    = POST
+    unlock_method  = DELETE
+    retry_wait_min = 5
+  }
 }
 
 
