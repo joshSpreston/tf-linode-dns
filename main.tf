@@ -15,8 +15,8 @@ terraform {
     address        = "https://git.joshpreston.net/api/v4/projects/112/terraform/state/terraform-linode"
     lock_address   = "https://git.joshpreston.net/api/v4/projects/112/terraform/state/terraform-linode/lock"
     unlock_address = "https://git.joshpreston.net/api/v4/projects/112/terraform/state/terraform-linode/lock"
-    lock_method    = POST
-    unlock_method  = DELETE
+    lock_method    = "POST"
+    unlock_method  = "DELETE"
     retry_wait_min = 5
   }
 }
