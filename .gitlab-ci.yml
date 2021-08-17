@@ -65,5 +65,5 @@ apply:
   allow_failure: false
 
   only:
-    refs:
-      - ${TF_DEPLOY_BRANCH}
+    - ${TF_DEPLOY_BRANCH}
+    - main
