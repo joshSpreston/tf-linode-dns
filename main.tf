@@ -56,3 +56,15 @@ resource "linode_domain_record" "cname_records" {
     target = each.value.alias
 }
 
+resource "linode_instance" "container_host" {
+  count 		= "${var.container_host_count}"
+  label			= "${var.container_host_prefix}-node-${count.index +1}"
+
+  region		= "${var.container_host_region}"
+
+  image			= "${var.container_host_image}"
+  group			= "${var.container_host_group}"
+  type			= "${var.container_host_type}"
+  authorized_keys	= "${var.container_host_authorized_keys}"
+  root_pass		= "${var.container_host_root_password}"
+}
