@@ -37,7 +37,9 @@ variable "container_host_authorized_keys" {
   ]
 }
 
-variable "container_host_root_password" {}
+variable "container_host_root_password" {
+  type = string
+}
 
 
 
