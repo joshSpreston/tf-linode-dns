@@ -2,7 +2,7 @@ variable "linode_api_token" {}
 
 # container instances
 variable "container_host_count" {
-  default	= 1
+  default	= 0
 }
 
 variable "container_host_type" {
