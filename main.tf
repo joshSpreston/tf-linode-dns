@@ -68,3 +68,4 @@ resource "linode_instance" "container_host" {
   authorized_keys	= "${var.container_host_authorized_keys}"
   root_pass		= "${var.container_host_root_password}"
 }
+
