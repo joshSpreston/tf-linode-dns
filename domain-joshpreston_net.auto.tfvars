@@ -18,18 +18,6 @@ linode_domain_records = {
     "record_target": "172.119.194.148",
     "record_type": "A"
   },
-  "bookstack" = {
-    "domain_name":  "preston.party",
-    "record_name": "bookstack",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
-  "files" = {
-    "domain_name":  "preston.party",
-    "record_name": "files",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
   "home" = {
     "domain_name":  "preston.party",
     "record_name": "home",
@@ -54,75 +42,15 @@ linode_domain_records = {
     "record_target": "76.91.170.6",
     "record_type": "A"
   },
-  "mayan" = {
-    "domain_name":  "preston.party",
-    "record_name": "mayan",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
-  "mc" = {
-    "domain_name":  "preston.party",
-    "record_name": "mc",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
-  "monica" = {
-    "domain_name":  "preston.party",
-    "record_name": "monica",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
-  "monitor" = {
-    "domain_name":  "preston.party",
-    "record_name": "monitor",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
-  "mylar" = {
-    "domain_name":  "preston.party",
-    "record_name": "mylar",
-    "record_target": "172.115.126.39",
-    "record_type": "A"
-  },
-  "ombi" = {
-    "domain_name":  "preston.party",
-    "record_name": "ombi",
-    "record_target": "172.115.126.39",
-    "record_type": "A"
-  },
-  "openhab" = {
-    "domain_name":  "preston.party",
-    "record_name": "openhab",
-    "record_target": "172.115.126.39",
-    "record_type": "A"
-  },
   "plex" = {
     "domain_name":  "preston.party",
     "record_name": "plex",
     "record_target": "76.91.170.6",
     "record_type": "A"
   },
-  "pydio" = {
-    "domain_name":  "preston.party",
-    "record_name": "pydio",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
   "radarr" = {
     "domain_name":  "preston.party",
     "record_name": "radarr",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
-  "rundeck" = {
-    "domain_name":  "preston.party",
-    "record_name": "rundeck",
-    "record_target": "172.115.126.39",
-    "record_type": "A"
-  },
-  "runeck" = {
-    "domain_name":  "preston.party",
-    "record_name": "runeck",
     "record_target": "76.91.170.6",
     "record_type": "A"
   },
@@ -143,24 +71,6 @@ linode_domain_records = {
     "record_name": "syncthing",
     "record_target": "76.91.170.6",
     "record_type": "A"
-  },
-  "tasks" = {
-    "domain_name":  "preston.party",
-    "record_name": "tasks",
-    "record_target": "76.91.170.6",
-    "record_type": "A"
-  },
-  "tautulli" = {
-    "domain_name":  "preston.party",
-    "record_name": "tautulli",
-    "record_target": "172.115.126.39",
-    "record_type": "A"
-  },
-  "wiki" = {
-    "domain_name":  "preston.party",
-    "record_name": "wiki",
-    "record_target": "bookstack.preston.party",
-    "record_type": "CNAME"
   },
   "_acme-challenge" = {
     "domain_name":  "preston.party",
